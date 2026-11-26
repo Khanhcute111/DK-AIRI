@@ -51,8 +51,10 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          packages: "platform-tools,platforms;android-36,build-tools;36.1.0"
+
+      - name: Install required Android SDK packages
+        run: |
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.1.0"
 
       - name: Apply DK AIRI branding
         working-directory: airi
@@ -61,8 +63,8 @@ jobs:
           from pathlib import Path
           p = Path("apps/stage-pocket/android/app/src/main/res/values/strings.xml")
           s = p.read_text(encoding="utf-8")
-          s = s.replace("<string name=\"app_name\">AIRI</string>", "<string name=\"app_name\">DK AIRI</string>")
-          s = s.replace("<string name=\"title_activity_main\">AIRI</string>", "<string name=\"title_activity_main\">DK AIRI</string>")
+          s = s.replace("<string name=\\"app_name\\">AIRI</string>", "<string name=\\"app_name\\">DK AIRI</string>")
+          s = s.replace("<string name=\\"title_activity_main\\">AIRI</string>", "<string name=\\"title_activity_main\\">DK AIRI</string>")
           p.write_text(s, encoding="utf-8")
           PY
 

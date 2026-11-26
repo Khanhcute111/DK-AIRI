@@ -51,11 +51,11 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
-
-      - name: Install Android build tools
-        run: |
-          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.1.0"
-          echo "${ANDROID_SDK_ROOT:-$ANDROID_HOME}/build-tools/36.1.0" >> "$GITHUB_PATH"
+        with:
+          packages: |
+            platform-tools
+            platforms;android-36
+            build-tools;36.1.0
 
       - name: Apply DK AIRI branding
         working-directory: airi

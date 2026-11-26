@@ -52,10 +52,7 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          packages: |
-            platform-tools
-            platforms;android-36
-            build-tools;36.1.0
+          packages: "platform-tools,platforms;android-36,build-tools;36.1.0"
 
       - name: Apply DK AIRI branding
         working-directory: airi
